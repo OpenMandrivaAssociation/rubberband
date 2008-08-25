@@ -12,6 +12,7 @@ URL:		http://www.breakfastquay.com/rubberband/
 Source0:	http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:	http://www.breakfastquay.com/rubberband/usage.txt
 Patch1:		%{name}-1.2-gcc43.patch
+Patch2:		%{name}-1.2-makefile.patch
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	libsamplerate-devel
@@ -50,6 +51,7 @@ package contains files needed to develop with the rubberband library.
 %prep
 %setup -q
 %patch1 -p1
+%patch2 -p1
 
 cp %{SOURCE1} .
 
