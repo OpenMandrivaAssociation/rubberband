@@ -4,15 +4,15 @@
 
 Summary:	Audio time-stretching and pitch-shifting library
 Name:		rubberband
-Version:	1.3
-Release:	%mkrel 3
+Version:	1.5.0
+Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Libraries
 URL:		http://www.breakfastquay.com/rubberband/
 Source0:	http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:	http://www.breakfastquay.com/rubberband/usage.txt
-Patch1:		%{name}-1.2-gcc43.patch
-Patch2:		%{name}-1.2-makefile.patch
+Patch2:		%{name}-1.5.0-makefile.patch
+Patch3:		rubberband-1.5.0-fix-version.patch
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	libsamplerate-devel
@@ -50,21 +50,20 @@ package contains files needed to develop with the rubberband library.
 
 %prep
 %setup -q
-%patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 cp %{SOURCE1} .
 
 %build
+autoreconf -fiv
+
 %configure2_5x
 %make
 
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-
-mv %{buildroot}%{_libdir}/librubberband.so %{buildroot}%{_libdir}/librubberband.so.%{major}
-ln -snf librubberband.so.%{major} %{buildroot}%{_libdir}/librubberband.so
 
 # lib64 fix
 perl -pi -e "s|/lib\b|/%{_lib}|g" %{buildroot}%{_libdir}/pkgconfig/rubberband.pc
@@ -82,12 +81,11 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc usage.txt
+%doc usage.txt CHANGELOG
 %{_bindir}/rubberband
 
 %files -n %{libname}
 %defattr(-,root,root)
-%doc README
 %{_libdir}/librubberband.so.%{major}*
 %{_libdir}/ladspa/ladspa-rubberband.cat
 %{_libdir}/ladspa/ladspa-rubberband.so
