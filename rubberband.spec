@@ -4,15 +4,19 @@
 
 Summary:	Audio time-stretching and pitch-shifting library
 Name:		rubberband
-Version:	1.5.0
+Version:	1.6.0
 Release:	%mkrel 1
 License:	GPLv2
 Group:		System/Libraries
 URL:		http://www.breakfastquay.com/rubberband/
 Source0:	http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:	http://www.breakfastquay.com/rubberband/usage.txt
-Patch2:		%{name}-1.5.0-makefile.patch
-Patch3:		rubberband-1.5.0-fix-version.patch
+Patch0:         %{name}-1.6.0-gcc46.patch
+Patch1:         %{name}-1.5.0-mk.patch
+# incorrect version in configure.ac (harmless) and .pc.in (could be bad
+# if a consumer strictly requires 1.5.0 functionality);
+# e-mailed to author
+Patch2:		%{name}-1.6.0-fix_ver.patch
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	libsamplerate-devel
@@ -50,13 +54,16 @@ package contains files needed to develop with the rubberband library.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 cp %{SOURCE1} .
 
 %build
 autoreconf -fiv
+
+sed -i 's|{exec_prefix}/lib|{exec_prefix}/%{_lib}|' rubberband.pc.in
 
 %configure2_5x
 %make
