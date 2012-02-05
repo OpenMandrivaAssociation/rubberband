@@ -1,22 +1,21 @@
-%define	major 2
-%define libname	%mklibname %{name} %{major}
-%define develname %mklibname -d %{name}
+%define		major		2
+%define		libname		%mklibname %{name} %{major}
+%define		develname	%mklibname -d %{name}
 
 Summary:	Audio time-stretching and pitch-shifting library
 Name:		rubberband
-Version:	1.6.0
-Release:	%mkrel 1
+Version:	1.7.0
+Release:	1
 License:	GPLv2
 Group:		System/Libraries
 URL:		http://www.breakfastquay.com/rubberband/
 Source0:	http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:	http://www.breakfastquay.com/rubberband/usage.txt
-Patch0:         %{name}-1.6.0-gcc46.patch
-Patch1:         %{name}-1.5.0-mk.patch
+Patch1:		rubberband-1.5.0-mk.patch
 # incorrect version in configure.ac (harmless) and .pc.in (could be bad
 # if a consumer strictly requires 1.5.0 functionality);
 # e-mailed to author
-Patch2:		%{name}-1.6.0-fix_ver.patch
+Patch2:		rubberband-1.7.0-fix_ver.patch
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	libsamplerate-devel
@@ -24,7 +23,6 @@ BuildRequires:	libsndfile-devel
 BuildRequires:	pkgconfig
 BuildRequires:	vamp-plugin-sdk-devel
 Requires:	%{libname} = %{version}-%{release}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Rubber Band is a library and utility program that permits you to change the
@@ -33,7 +31,6 @@ tempo and pitch of an audio recording independently of one another.
 %package -n %{libname}
 Summary:	Audio time-stretching and pitch-shifting library
 Group:		System/Libraries
-Obsoletes:	%{mklibname %{name} 0} < 1.2
 
 %description -n %{libname}
 Rubber Band is a library and utility program that permits you to change the
@@ -45,7 +42,6 @@ Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
-Obsoletes:	%{mklibname %{name} -d} < 1.2
 
 %description -n	%{develname}
 Rubber Band is a library and utility program that permits you to change the
@@ -54,45 +50,29 @@ package contains files needed to develop with the rubberband library.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
-cp %{SOURCE1} .
+%__cp %{SOURCE1} .
 
 %build
 autoreconf -fiv
-
-sed -i 's|{exec_prefix}/lib|{exec_prefix}/%{_lib}|' rubberband.pc.in
-
+%__sed -i 's|{exec_prefix}/lib|{exec_prefix}/%{_lib}|' rubberband.pc.in
 %configure2_5x
 %make
 
 %install
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 %makeinstall_std
 
 # lib64 fix
-perl -pi -e "s|/lib\b|/%{_lib}|g" %{buildroot}%{_libdir}/pkgconfig/rubberband.pc
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
+%__perl -pi -e "s|/lib\b|/%{_lib}|g" %{buildroot}%{_libdir}/pkgconfig/rubberband.pc
 
 %files
-%defattr(-,root,root)
 %doc usage.txt CHANGELOG
 %{_bindir}/rubberband
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/librubberband.so.%{major}*
 %{_libdir}/ladspa/ladspa-rubberband.cat
 %{_libdir}/ladspa/ladspa-rubberband.so
@@ -101,7 +81,6 @@ rm -rf %{buildroot}
 %{_libdir}/vamp/vamp-rubberband.so
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_includedir}/rubberband
 %{_libdir}/librubberband.so
 %{_libdir}/librubberband.a
