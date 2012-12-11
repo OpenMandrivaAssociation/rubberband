@@ -1,0 +1,51 @@
+
+Rubber Band
+An audio time-stretching and pitch-shifting library and utility program.
+Copyright 2007 Chris Cannam.  Distributed under the GNU General Public License.
+
+   Usage: rubberband [options] <infile.wav> <outfile.wav>
+
+You must specify at least one of the following time and pitch ratio options.
+
+  -t<X>, --time <X>       Stretch to X times original duration, or
+  -T<X>, --tempo <X>      Change tempo by multiple X (equivalent to --time 1/X)
+
+  -p<X>, --pitch <X>      Raise pitch by X semitones, or
+  -f<X>, --frequency <X>  Change frequency by multiple X
+
+The following option provides a simple way to adjust the sound.  See below
+for more details.
+
+  -c<N>, --crisp <N>      Crispness (N = 0,1,2,3,4,5); default 4 (see below)
+
+The remaining options fine-tune the processing mode and stretch algorithm.
+These are mostly included for test purposes; the default settings and standard
+crispness parameter are intended to provide the best sounding set of options
+for most situations.
+
+  -P,    --precise        Aim for minimal time distortion (implied by -R)
+  -R,    --realtime       Select realtime mode (implies -P --no-threads)
+         --no-threads     No extra threads regardless of CPU and channel count
+         --threads        Assume multi-CPU even if only one CPU is identified
+         --no-transients  Disable phase resynchronisation at transients
+         --bl-transients  Band-limit phase resync to extreme frequencies
+         --no-peaklock    Disable phase locking to peak frequencies
+         --no-softening   Disable large-ratio softening of phase locking
+         --window-long    Use longer processing window (actual size may vary)
+         --window-short   Use shorter processing window
+         --thresh<N> <F>  Set internal freq threshold N (N = 0,1,2) to F Hz
+
+  -d<N>, --debug <N>      Select debug level (N = 0,1,2,3); default 0, full 3
+                          (N.B. debug level 3 includes audible ticks in output)
+  -q,    --quiet          Suppress progress output
+
+  -h,    --help           Show this help
+
+"Crispness" levels:
+  -c 0   equivalent to --no-transients --no-peaklock --window-long
+  -c 1   equivalent to --no-transients --no-peaklock
+  -c 2   equivalent to --no-transients
+  -c 3   equivalent to --bl-transients
+  -c 4   default processing options
+  -c 5   equivalent to --no-peaklock --window-short (may be suitable for drums)
+
