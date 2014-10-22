@@ -12,10 +12,6 @@ URL:		http://www.breakfastquay.com/rubberband/
 Source0:	http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:	http://www.breakfastquay.com/rubberband/usage.txt
 Patch1:		rubberband-1.5.0-mk.patch
-# incorrect version in configure.ac (harmless) and .pc.in (could be bad
-# if a consumer strictly requires 1.5.0 functionality);
-# e-mailed to author
-Patch2:		rubberband-1.7.0-fix_ver.patch
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	pkgconfig(samplerate)
@@ -49,8 +45,7 @@ package contains files needed to develop with the rubberband library.
 
 %prep
 %setup -q
-%patch1 -p1
-%patch2 -p1
+%apply_patches
 
 cp %{SOURCE1} .
 
