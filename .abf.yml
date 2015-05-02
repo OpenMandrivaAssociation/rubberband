@@ -1,2 +1,4 @@
+removed_sources:
+  rubberband-1.7.0.tar.bz2: a9283197c5ff7396fa70b574a9420b2d1423cc50
 sources:
-  "rubberband-1.7.0.tar.bz2": a9283197c5ff7396fa70b574a9420b2d1423cc50
+  rubberband-1.8.1.tar.bz2: ae1faaef211d612db745d66d77266cf6789fd4ee
