@@ -11,7 +11,7 @@ Group:		System/Libraries
 URL:		http://www.breakfastquay.com/rubberband/
 Source0:	http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:	http://www.breakfastquay.com/rubberband/usage.txt
-Patch1:		rubberband-1.5.0-mk.patch
+#Patch1:		rubberband-1.5.0-mk.patch
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	pkgconfig(samplerate)
