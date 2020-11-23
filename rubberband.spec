@@ -15,8 +15,6 @@ Group:          System/Libraries
 URL:            http://www.breakfastquay.com/rubberband/
 Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:        http://www.breakfastquay.com/rubberband/usage.txt
-#prevent unbuilt jni lib to be searched for at install
-#Patch1:         rubberband-1.8.2-no-jni.patch
 
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
