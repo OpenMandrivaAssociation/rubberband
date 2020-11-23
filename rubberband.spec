@@ -8,15 +8,13 @@
 
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
-Version:        1.8.2
+Version:        1.9.0
 Release:        1
 License:        GPLv2
 Group:          System/Libraries
 URL:            http://www.breakfastquay.com/rubberband/
 Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:        http://www.breakfastquay.com/rubberband/usage.txt
-#prevent unbuilt jni lib to be searched for at install
-Patch1:         rubberband-1.8.2-no-jni.patch
 
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
@@ -58,7 +56,7 @@ cp %{SOURCE1} .
 %build
 autoreconf -fiv
 
-%configure2_5x --libdir=%{_libdir}
+%configure --libdir=%{_libdir}
 %make_build all
 
 %install
