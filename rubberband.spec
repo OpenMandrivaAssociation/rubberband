@@ -8,7 +8,7 @@
 
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
-Version:        1.8.2
+Version:        1.9.0
 Release:        1
 License:        GPLv2
 Group:          System/Libraries
@@ -58,7 +58,7 @@ cp %{SOURCE1} .
 %build
 autoreconf -fiv
 
-%configure2_5x --libdir=%{_libdir}
+%configure --libdir=%{_libdir}
 %make_build all
 
 %install
