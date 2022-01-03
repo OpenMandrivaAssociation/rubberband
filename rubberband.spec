@@ -16,6 +16,7 @@ URL:            http://www.breakfastquay.com/rubberband/
 Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:        http://www.breakfastquay.com/rubberband/usage.txt
 
+BuildRequires:  meson
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
 BuildRequires:  pkgconfig(samplerate)
@@ -54,13 +55,11 @@ cp %{SOURCE1} .
 %autopatch -p1
 
 %build
-autoreconf -fiv
-
-%configure --libdir=%{_libdir}
-%make_build all
+%meson
+%meson_build
 
 %install
-%make_install  INSTALL_LIBDIR="%{_libdir}" INSTALL_VAMPDIR="%vampdir" INSTALL_LADSPADIR="%ladspadir" INSTALL_PKGDIR="%pkgconfdir"
+%meson_install
 
 %files
 %doc usage.txt CHANGELOG
