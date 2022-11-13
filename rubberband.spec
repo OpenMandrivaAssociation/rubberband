@@ -17,6 +17,7 @@ Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}
 Source1:        http://www.breakfastquay.com/rubberband/usage.txt
 
 BuildRequires:  meson
+BuildRequires:  atomic-devel
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
 BuildRequires:  pkgconfig(samplerate)
