@@ -8,7 +8,7 @@
 
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
-Version:        2.0.2
+Version:        3.1.1
 Release:        1
 License:        GPLv2
 Group:          System/Libraries
@@ -17,6 +17,7 @@ Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}
 Source1:        http://www.breakfastquay.com/rubberband/usage.txt
 
 BuildRequires:  meson
+BuildRequires:  atomic-devel
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
 BuildRequires:  pkgconfig(samplerate)
@@ -55,6 +56,7 @@ cp %{SOURCE1} .
 %autopatch -p1
 
 %build
+export LDFLAGS="%{optflags} -latomic"
 %meson
 %meson_build
 
@@ -64,6 +66,7 @@ cp %{SOURCE1} .
 %files
 %doc usage.txt CHANGELOG
 %{_bindir}/rubberband
+%{_bindir}/rubberband-r3
 
 %files -n %{libname}
 %{_libdir}/librubberband.so.%{major}{,.*}
