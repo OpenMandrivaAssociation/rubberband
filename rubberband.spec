@@ -66,6 +66,7 @@ export LDFLAGS="%{optflags} -latomic"
 %files
 %doc usage.txt CHANGELOG
 %{_bindir}/rubberband
+%{_bindir}/rubberband-r3
 
 %files -n %{libname}
 %{_libdir}/librubberband.so.%{major}{,.*}
