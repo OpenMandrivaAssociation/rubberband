@@ -56,6 +56,7 @@ cp %{SOURCE1} .
 %autopatch -p1
 
 %build
+export LDFLAGS="%{optflags} -latomic"
 %meson
 %meson_build
 
