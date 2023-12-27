@@ -20,6 +20,7 @@ BuildRequires:  meson
 BuildRequires:  atomic-devel
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
+BuildRequires:  boost-devel
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  pkgconfig
