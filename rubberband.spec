@@ -59,7 +59,7 @@ cp %{SOURCE1} .
 
 %build
 export LDFLAGS="%{optflags} -latomic"
-%meson
+%meson -Djni=disabled
 %meson_build
 
 %install
