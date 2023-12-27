@@ -8,8 +8,8 @@
 
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
-Version:        3.1.1
-Release:        2
+Version:        3.3.0
+Release:        1
 License:        GPLv2
 Group:          System/Libraries
 URL:            http://www.breakfastquay.com/rubberband/
@@ -23,7 +23,7 @@ BuildRequires:  ladspa-devel
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  pkgconfig
-BuildRequires:  vamp-plugin-sdk-devel
+BuildRequires:  pkgconfig(vamp-sdk)
 Requires:       %{libname} = %{version}-%{release}
 
 %description
