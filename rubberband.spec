@@ -83,4 +83,5 @@ export LDFLAGS="%{optflags} -latomic"
 %{_includedir}/rubberband
 %{_libdir}/*.so
 %{_libdir}/*.a
+%{_libdir}/lv2/rubberband.lv2/
 %pkgconfdir/rubberband.pc
