@@ -1,5 +1,6 @@
 %define         major        2
-%define         libname      %mklibname %{name} %{major}
+%define         libname      %mklibname %{name}
+%define         oldlibname      %mklibname %{name} 2
 %define         develname    %mklibname -d %{name}
 
 %define         vampdir      %{_libdir}/vamp
@@ -8,8 +9,8 @@
 
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
-Version:        3.1.1
-Release:        2
+Version:        3.3.0
+Release:        1
 License:        GPLv2
 Group:          System/Libraries
 URL:            http://www.breakfastquay.com/rubberband/
@@ -20,10 +21,12 @@ BuildRequires:  meson
 BuildRequires:  atomic-devel
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
+BuildRequires:  boost-devel
+BuildRequires:  pkgconfig(lv2)
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  pkgconfig
-BuildRequires:  vamp-plugin-sdk-devel
+BuildRequires:  pkgconfig(vamp-sdk)
 Requires:       %{libname} = %{version}-%{release}
 
 %description
@@ -33,6 +36,7 @@ tempo and pitch of an audio recording independently of one another.
 %package -n %{libname}
 Summary:        Audio time-stretching and pitch-shifting library
 Group:          System/Libraries
+%rename  %{oldlibname}
 
 %description -n %{libname}
 Rubber Band is a library and utility program that permits you to change the
@@ -57,7 +61,7 @@ cp %{SOURCE1} .
 
 %build
 export LDFLAGS="%{optflags} -latomic"
-%meson
+%meson -Djni=disabled
 %meson_build
 
 %install
@@ -81,4 +85,5 @@ export LDFLAGS="%{optflags} -latomic"
 %{_includedir}/rubberband
 %{_libdir}/*.so
 %{_libdir}/*.a
+%{_libdir}/lv2/rubberband.lv2/
 %pkgconfdir/rubberband.pc
