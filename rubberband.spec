@@ -1,5 +1,6 @@
 %define         major        2
-%define         libname      %mklibname %{name} %{major}
+%define         libname      %mklibname %{name}
+%define         oldlibname      %mklibname %{name} 2
 %define         develname    %mklibname -d %{name}
 
 %define         vampdir      %{_libdir}/vamp
@@ -35,6 +36,7 @@ tempo and pitch of an audio recording independently of one another.
 %package -n %{libname}
 Summary:        Audio time-stretching and pitch-shifting library
 Group:          System/Libraries
+%rename  %{oldlibname}
 
 %description -n %{libname}
 Rubber Band is a library and utility program that permits you to change the
