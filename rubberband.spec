@@ -21,6 +21,7 @@ BuildRequires:  atomic-devel
 BuildRequires:  pkgconfig(fftw3)
 BuildRequires:  ladspa-devel
 BuildRequires:  boost-devel
+BuildRequires:  pkgconfig(lv2)
 BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  pkgconfig
