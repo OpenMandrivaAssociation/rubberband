@@ -13,7 +13,7 @@ Version:        3.3.0
 Release:        1
 License:        GPLv2
 Group:          System/Libraries
-URL:            http://www.breakfastquay.com/rubberband/
+URL:            https://www.breakfastquay.com/rubberband/
 Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
 Source1:        http://www.breakfastquay.com/rubberband/usage.txt
 
