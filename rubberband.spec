@@ -9,7 +9,7 @@
 
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
-Version:        3.3.0
+Version:        4.0.0
 Release:        1
 License:        GPLv2
 Group:          System/Libraries
