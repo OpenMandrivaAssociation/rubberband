@@ -14,8 +14,8 @@ Release:        1
 License:        GPLv2
 Group:          System/Libraries
 URL:            https://www.breakfastquay.com/rubberband/
-Source0:        http://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
-Source1:        http://www.breakfastquay.com/rubberband/usage.txt
+Source0:        https://www.breakfastquay.com/rubberband/files/%{name}-%{version}.tar.bz2
+Source1:        https://www.breakfastquay.com/rubberband/usage.txt
 
 BuildRequires:  meson
 BuildRequires:  atomic-devel
