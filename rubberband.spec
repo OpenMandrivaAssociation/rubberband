@@ -10,7 +10,7 @@
 Summary:        Audio time-stretching and pitch-shifting library
 Name:           rubberband
 Version:        4.0.0
-Release:        1
+Release:        2
 License:        GPLv2
 Group:          System/Libraries
 URL:            https://www.breakfastquay.com/rubberband/
